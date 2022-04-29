@@ -15,3 +15,4 @@
 .DS_STORE
 
 # End of https://www.gitignore.io/api/visualstudiocode
+.vscode/settings.json
