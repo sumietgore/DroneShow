@@ -1,0 +1,24 @@
+[0.581s] Invoking command in '/home/sumit/DroneShow/ds_ws/src/DroneShow': PYTHONPATH=/home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages: /usr/bin/python3 setup.py egg_info --egg-base ../../build/DroneShow build --build-base /home/sumit/DroneShow/ds_ws/build/DroneShow/build install --prefix /home/sumit/DroneShow/ds_ws/install/DroneShow --record /home/sumit/DroneShow/ds_ws/build/DroneShow/install.log --single-version-externally-managed
+[1.069s] running egg_info
+[1.070s] writing ../../build/DroneShow/DroneShow.egg-info/PKG-INFO
+[1.070s] writing dependency_links to ../../build/DroneShow/DroneShow.egg-info/dependency_links.txt
+[1.071s] writing entry points to ../../build/DroneShow/DroneShow.egg-info/entry_points.txt
+[1.071s] writing requirements to ../../build/DroneShow/DroneShow.egg-info/requires.txt
+[1.072s] writing top-level names to ../../build/DroneShow/DroneShow.egg-info/top_level.txt
+[1.161s] reading manifest file '../../build/DroneShow/DroneShow.egg-info/SOURCES.txt'
+[1.163s] writing manifest file '../../build/DroneShow/DroneShow.egg-info/SOURCES.txt'
+[1.163s] running build
+[1.163s] running build_py
+[1.164s] copying DroneShow/DroneShow.py -> /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow
+[1.164s] running install
+[1.165s] running install_lib
+[1.167s] copying /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow/DroneShow.py -> /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow
+[1.168s] byte-compiling /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow/DroneShow.py to DroneShow.cpython-38.pyc
+[1.171s] running install_data
+[1.172s] running install_egg_info
+[1.175s] removing '/home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow-0.0.0-py3.8.egg-info' (and everything under it)
+[1.175s] Copying ../../build/DroneShow/DroneShow.egg-info to /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow-0.0.0-py3.8.egg-info
+[1.177s] running install_scripts
+[1.225s] Installing DroneShow script to /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/DroneShow
+[1.226s] writing list of installed files to '/home/sumit/DroneShow/ds_ws/build/DroneShow/install.log'
+[1.269s] Invoked command in '/home/sumit/DroneShow/ds_ws/src/DroneShow' returned '0': PYTHONPATH=/home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages: /usr/bin/python3 setup.py egg_info --egg-base ../../build/DroneShow build --build-base /home/sumit/DroneShow/ds_ws/build/DroneShow/build install --prefix /home/sumit/DroneShow/ds_ws/install/DroneShow --record /home/sumit/DroneShow/ds_ws/build/DroneShow/install.log --single-version-externally-managed

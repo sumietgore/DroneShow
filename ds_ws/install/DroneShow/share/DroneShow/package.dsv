@@ -1,0 +1,6 @@
+source;share/DroneShow/hook/pythonpath.ps1
+source;share/DroneShow/hook/pythonpath.dsv
+source;share/DroneShow/hook/pythonpath.sh
+source;share/DroneShow/hook/ament_prefix_path.ps1
+source;share/DroneShow/hook/ament_prefix_path.dsv
+source;share/DroneShow/hook/ament_prefix_path.sh

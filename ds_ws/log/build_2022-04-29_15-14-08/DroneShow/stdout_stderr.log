@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/DroneShow/DroneShow.egg-info
+writing ../../build/DroneShow/DroneShow.egg-info/PKG-INFO
+writing dependency_links to ../../build/DroneShow/DroneShow.egg-info/dependency_links.txt
+writing entry points to ../../build/DroneShow/DroneShow.egg-info/entry_points.txt
+writing requirements to ../../build/DroneShow/DroneShow.egg-info/requires.txt
+writing top-level names to ../../build/DroneShow/DroneShow.egg-info/top_level.txt
+writing manifest file '../../build/DroneShow/DroneShow.egg-info/SOURCES.txt'
+reading manifest file '../../build/DroneShow/DroneShow.egg-info/SOURCES.txt'
+writing manifest file '../../build/DroneShow/DroneShow.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/sumit/DroneShow/ds_ws/build/DroneShow/build
+creating /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib
+creating /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow
+copying DroneShow/__init__.py -> /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow
+copying DroneShow/DroneShow.py -> /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow
+running install
+running install_lib
+creating /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow
+copying /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow/__init__.py -> /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow
+copying /home/sumit/DroneShow/ds_ws/build/DroneShow/build/lib/DroneShow/DroneShow.py -> /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow
+byte-compiling /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow/DroneShow.py to DroneShow.cpython-38.pyc
+running install_data
+creating /home/sumit/DroneShow/ds_ws/install/DroneShow/share/ament_index
+creating /home/sumit/DroneShow/ds_ws/install/DroneShow/share/ament_index/resource_index
+creating /home/sumit/DroneShow/ds_ws/install/DroneShow/share/ament_index/resource_index/packages
+copying resource/DroneShow -> /home/sumit/DroneShow/ds_ws/install/DroneShow/share/ament_index/resource_index/packages
+copying package.xml -> /home/sumit/DroneShow/ds_ws/install/DroneShow/share/DroneShow
+running install_egg_info
+Copying ../../build/DroneShow/DroneShow.egg-info to /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/python3.8/site-packages/DroneShow-0.0.0-py3.8.egg-info
+running install_scripts
+Installing DroneShow script to /home/sumit/DroneShow/ds_ws/install/DroneShow/lib/DroneShow
+writing list of installed files to '/home/sumit/DroneShow/ds_ws/build/DroneShow/install.log'

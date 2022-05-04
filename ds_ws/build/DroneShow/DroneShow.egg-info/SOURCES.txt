@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/DroneShow/DroneShow.egg-info/PKG-INFO
+../../build/DroneShow/DroneShow.egg-info/SOURCES.txt
+../../build/DroneShow/DroneShow.egg-info/dependency_links.txt
+../../build/DroneShow/DroneShow.egg-info/entry_points.txt
+../../build/DroneShow/DroneShow.egg-info/requires.txt
+../../build/DroneShow/DroneShow.egg-info/top_level.txt
+../../build/DroneShow/DroneShow.egg-info/zip-safe
+DroneShow/DroneShow.py
+DroneShow/__init__.py
+resource/DroneShow
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

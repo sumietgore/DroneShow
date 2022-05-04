@@ -1,0 +1,3 @@
+[console_scripts]
+DroneShow = DroneShow.DroneShow:main
+
