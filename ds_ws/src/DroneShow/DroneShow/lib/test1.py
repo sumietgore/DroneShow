@@ -4,6 +4,8 @@ import time
 
 count = 0
 
+#Show Controller
+
 class ShowController():
     WINDOW = sg.Window("asd", layout=[[sg.Text("Hello World", key="-TEXT-"),sg.Button("Change", key="-Change-")],[sg.Text("None", key="-OPENFILE-"),sg.FileBrowse("Open Animation File",key="-ANIMFILE-",target="-OPENFILE-", change_submits=True)],[sg.Table(values=[], headings=["Drone Name", "X", "Y","Z", "Yaw"])]], size=(800,600))
 
