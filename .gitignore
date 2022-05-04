@@ -7,7 +7,7 @@
 .DS_STORE
 .vscode/settings.json
 .vscode
-*/.DS_STORE
-ds_ws/build
-ds_ws/log
-ds_Ws/install
+**/.DS_STORE
+**/build
+**/install
+**/log
