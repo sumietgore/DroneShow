@@ -2,9 +2,18 @@ import numpy as np
 from math import cos, sin
 import time
 from djitellopy import Tello
+from sympy import true
 
 class MotionPlanner():
     def __init__(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
+
+        self.start_pos = start_pos
+        self.des_pos = des_pos
+        self.start_vel = start_vel
+        self.des_vel = des_vel
+        self.start_acc = start_acc
+        self.des_acc = des_acc
+
         self.start_x = start_pos[0]
         self.start_y = start_pos[1]
         self.start_z = start_pos[2]
@@ -42,10 +51,17 @@ class MotionPlanner():
         #Solve the coefficients A, b_x, b_y and b_z for quintic polynomial
         self.__solve__coeff()
 
-    def __solve__coeff(self):
+    def recalculate(self):
+        self.__solve__coeff(recal=True)
+
+    def __solve__coeff(self, recal = False):
         """"
-        Calculate A, b_x, b_y and b_z
+        Calculate A, b_x, b_y and b_zdi
         """
+
+        if recal == True:
+            print("Recalculating")
+
         A = np.array(
             [[0, 0, 0, 0, 0, 1],
              [self.T**5, self.T**4, self.T**3, self.T**2, self.T, 1],
