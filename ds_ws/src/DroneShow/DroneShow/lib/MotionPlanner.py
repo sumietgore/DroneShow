@@ -123,6 +123,8 @@ class MotionPlanner():
              [self.des_z_acc]
             ])
 
+        print(A,b_x, b_y, b_z)
+
         self.x_c = np.linalg.solve(A, b_x)
         self.y_c = np.linalg.solve(A, b_y)
         self.z_c = np.linalg.solve(A, b_z)

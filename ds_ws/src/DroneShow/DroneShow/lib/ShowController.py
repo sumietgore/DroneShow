@@ -63,3 +63,7 @@ class ControllerWindow():
                     sg.Popup("Please select a drone from the table.")
 
         self.window.close()
+
+
+if __name__ == "__main__":
+    window = ControllerWindow()
