@@ -1,19 +1,14 @@
 import numpy as np
-from math import cos, sin
 import time
-from djitellopy import Tello
-from sympy import true
 
 class MotionPlanner():
+    """
+    Creates a quintic polynomial motion planner for the drone
+    """
     def __init__(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
-
-        self.start_pos = start_pos
-        self.des_pos = des_pos
-        self.start_vel = start_vel
-        self.des_vel = des_vel
-        self.start_acc = start_acc
-        self.des_acc = des_acc
-
+        self.set(start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0])
+        
+    def set(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
         self.start_x = start_pos[0]
         self.start_y = start_pos[1]
         self.start_z = start_pos[2]
@@ -42,6 +37,18 @@ class MotionPlanner():
         self.y_c = None
         self.z_c = None
 
+        self.desired_x = None
+        self.desired_y = None
+        self.desired_z = None
+
+        self.desired_x_vel = None
+        self.desired_y_vel = None  
+        self.desired_z_vel = None
+
+        self.desired_x_acc = None
+        self.desired_y_acc = None  
+        self.desired_z_acc = None
+
         self.completed = False
 
         self.dt = round(dt,3)
@@ -51,7 +58,25 @@ class MotionPlanner():
         #Solve the coefficients A, b_x, b_y and b_z for quintic polynomial
         self.__solve__coeff()
 
-    def recalculate(self):
+    def recalculate(self, current_pos):
+        """
+        Recalculate the coefficients if the drone is put of position
+        """
+        self.start_x = current_pos[0]
+        self.start_y = current_pos[1]
+        self.start_z = current_pos[2]
+
+        self.start_x_vel = self.desired_x_vel
+        self.start_y_vel = self.desired_y_vel
+        self.start_z_vel = self.desired_z_vel
+
+        self.start_x_acc = self.desired_x_vel
+        self.start_y_acc = self.desired_y_vel
+        self.start_z_acc = self.desired_z_vel
+
+        self.T = self.T - self.t
+        self.t = 0
+
         self.__solve__coeff(recal=True)
 
     def __solve__coeff(self, recal = False):
@@ -105,19 +130,41 @@ class MotionPlanner():
     def __calculate_position(self, c, t):
         return round(float(c[0] * t**5 + c[1] * t**4 + c[2] * t**3 + c[3] * t**2 + c[4] * t + c[5]),1)
     
+    def __calculate_velocity(self, c, t):
+        return round(float(5 * c[0] * t**4 + 4 * c[1] * t**3 + 3 * c[2] * t**2 + 2 * c[3] * t + c[4]),1)
+
+    def __calculate_acceleration(self, c, t):
+        return round(float(20 * c[0] * t**3 + 12 * c[1] * t**2 + 6 * c[2] * t + 2 * c[3]),1)
+    
     def solve(self):
+        """
+        Solve the motion planner for particular timeframe
+        """
         if self.t <= self.T:
-            des_x_pos = self.__calculate_position(self.x_c, self.t)
-            des_y_pos = self.__calculate_position(self.y_c, self.t)
-            des_z_pos = self.__calculate_position(self.z_c, self.t)
+
+            #Desired position calcultation
+            self.desired_x = self.__calculate_position(self.x_c, self.t)
+            self.desired_y = self.__calculate_position(self.y_c, self.t)
+            self.desired_z = self.__calculate_position(self.z_c, self.t)
+
+            #Desired velocity calculation
+            self.desired_x_vel = self.__calculate_velocity(self.x_c, self.t)
+            self.desired_y_vel = self.__calculate_velocity(self.y_c, self.t)
+            self.desired_z_vel = self.__calculate_velocity(self.z_c, self.t)
+
+            #Desired acc calculation
+            self.desired_x_acc = self.__calculate_acceleration(self.x_c, self.t)
+            self.desired_y_acc = self.__calculate_acceleration(self.y_c, self.t)
+            self.desired_z_acc = self.__calculate_acceleration(self.z_c, self.t)
+
             self.t = round(self.t + self.dt,3)
-            print(f'x:{des_x_pos} ,   y:{des_y_pos} ,     z:{des_z_pos}     {self.t}')
+            print(f'x:{self.desired_x} ,   y:{self.desired_y} ,     z:{self.desired_z}     {self.t}')
             
             if self.T == self.t:
                 self.completed = True
-        else:
-            print("Trajectory completed")
-            self.completed = True
+
+        if self.completed:
+            print("Completed")
 
 
 if __name__ == '__main__':

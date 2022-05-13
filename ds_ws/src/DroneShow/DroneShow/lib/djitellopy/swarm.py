@@ -11,10 +11,12 @@ from .enforce_types import enforce_types
 
 TELLOS: List[Tello]
 TELLOS = []
+ID = -1
 
 @enforce_types
 class TelloSwarm:
-    """Swarm library for controlling multiple Tellos simultaneously
+    """
+    Swarm library for controlling multiple Tellos simultaneously
     """
 
     tellos: List[Tello]
@@ -47,7 +49,7 @@ class TelloSwarm:
         if not ips:
             raise TelloException("No ips provided")
 
-        #tellos = []
+        tellos = []
         for ip in ips:
             tellos.append(Tello(ip.strip()))
 
@@ -55,7 +57,10 @@ class TelloSwarm:
 
     @staticmethod
     def add_drone(ip):
-        TELLOS.append(Tello(ip))
+        tello = Tello(ip)
+        TELLOS.append(tello)
+        ID += 1
+        return ID
 
     def get_drones():
         return TELLOS
