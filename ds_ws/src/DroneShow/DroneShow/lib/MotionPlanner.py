@@ -5,10 +5,15 @@ class MotionPlanner():
     """
     Creates a quintic polynomial motion planner for the drone
     """
-    def __init__(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
+    def __init__(self, start_pos = [0,0,0], des_pos = [0,0,0], T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
         self.set(start_pos, des_pos, T=T, dt = dt, start_vel=start_vel, des_vel=des_vel, start_acc=start_acc, des_acc=des_acc)
         
     def set(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
+
+        self.f_start_x = start_pos[0]
+        self.f_start_y = start_pos[1]
+        self.f_start_z = start_pos[2]
+
         self.start_x = start_pos[0]
         self.start_y = start_pos[1]
         self.start_z = start_pos[2]
@@ -54,6 +59,7 @@ class MotionPlanner():
         self.dt = round(dt,3)
         self.T = round(T,3)
         self.t = round(0.0,3)
+        self.t_t = round(0.0,3)
 
         #Solve the coefficients A, b_x, b_y and b_z for quintic polynomial
         self.__solve__coeff()
@@ -62,17 +68,18 @@ class MotionPlanner():
         """
         Recalculate the coefficients if the drone is put of position
         """
+
+        self.start_x_vel = (current_pos[0] - self.f_start_x)/self.t_t
+        self.start_y_vel = (current_pos[1] - self.f_start_y)/self.t_t
+        self.start_z_vel = (current_pos[2] - self.f_start_z)/self.t_t
+
         self.start_x = current_pos[0]
         self.start_y = current_pos[1]
         self.start_z = current_pos[2]
 
-        self.start_x_vel = self.desired_x_vel
-        self.start_y_vel = self.desired_y_vel
-        self.start_z_vel = self.desired_z_vel
-
-        self.start_x_acc = self.desired_x_vel
-        self.start_y_acc = self.desired_y_vel
-        self.start_z_acc = self.desired_z_vel
+        self.start_x_acc = self.start_x_vel / self.t_t
+        self.start_y_acc = self.start_y_vel / self.t_t
+        self.start_z_acc = self.start_z_vel / self.t_t
 
         self.T = self.T - self.t
         self.t = 0
@@ -123,8 +130,6 @@ class MotionPlanner():
              [self.des_z_acc]
             ])
 
-        print(A,b_x, b_y, b_z)
-
         self.x_c = np.linalg.solve(A, b_x)
         self.y_c = np.linalg.solve(A, b_y)
         self.z_c = np.linalg.solve(A, b_z)
@@ -160,10 +165,13 @@ class MotionPlanner():
             self.desired_z_acc = self.__calculate_acceleration(self.z_c, self.t)
 
             self.t = round(self.t + self.dt,3)
-            print(f'x:{self.desired_x} ,   y:{self.desired_y} ,     z:{self.desired_z}     {self.t}')
+            self.t_t = round(self.t + self.dt,3)
+            #print(f'x:{self.desired_x} ,   y:{self.desired_y} ,     z:{self.desired_z}     {self.t}')
             
             if self.T == self.t:
                 self.completed = True
+        else:
+            self.completed = True
 
         if self.completed:
             print("Completed")

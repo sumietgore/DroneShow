@@ -596,6 +596,9 @@ class Tello:
         self.send_command_without_return("emergency")
         self.is_flying = False
 
+    def stop(self):
+        self.send_control_command("stop")
+
     def move(self, direction: str, x: int):
         """Tello fly up, down, left, right, forward or back with distance x cm.
         Users would normally call one of the move_x functions instead.

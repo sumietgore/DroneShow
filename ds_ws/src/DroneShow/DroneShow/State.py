@@ -1,7 +1,6 @@
-from .tellopy import Tello, TelloSwarm, enforce_types
-from MotionPlanner import MotionPlanner
+from lib.tellopy import Tello, TelloSwarm
+from lib.MotionPlanner import MotionPlanner
 
-@enforce_types
 class Swarm:
     def __init__(self):
         self.data = {}
@@ -10,7 +9,7 @@ class Swarm:
         self.swarm_controller = None
     
     def add_drone(self, name, ip):
-        self.ips.append[ip]
+        self.ips.append(ip)
         drone = Drone(name, self.id, ip)
         self.data[name] = drone
         self.id += 1
@@ -83,3 +82,9 @@ class State:
 
     def update_velocities(self, x, y, z, yaw):
         self.v = [x,y,z,yaw]
+
+swarm = Swarm()
+
+swarm.add_drone("Drone 1", "192.168.1.1")
+
+swarm.connect()

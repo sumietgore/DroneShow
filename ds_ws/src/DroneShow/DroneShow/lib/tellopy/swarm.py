@@ -11,7 +11,7 @@ from .enforce_types import enforce_types
 
 TELLOS: List[Tello]
 TELLOS = []
-ID = -1
+
 
 @enforce_types
 class TelloSwarm:
@@ -26,6 +26,8 @@ class TelloSwarm:
     threads: List[Thread]
 
     tellos = []
+
+    ID = -1
 
     @staticmethod
     def fromFile(path: str):
