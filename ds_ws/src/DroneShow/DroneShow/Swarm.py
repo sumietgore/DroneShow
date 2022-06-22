@@ -2,6 +2,8 @@ from lib.tellopy import Tello, TelloSwarm
 from lib.MotionPlanner import MotionPlanner
 
 class Swarm:
+    DRONE_DATA = {}
+    DRONE_V_DATA = []
     """
     Creates a swarm of tello drones
     """
@@ -64,9 +66,9 @@ class Drone():
         self.name = name
         self.id = id
         self.host = host
-        self.local_topic_name = topic_name
+        self.locale_topic_name = topic_name
         self.state = State()
-        #self.motion_planner = MotionPlanner()
+        self.motion_planner = None
 
 class State:
     def __init__(self, x = 0.0, y=0.0, z =0.0, yaw=0.0, battery_level = None, temp_level = None):

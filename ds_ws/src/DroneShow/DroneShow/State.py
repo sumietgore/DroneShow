@@ -11,7 +11,7 @@ class Swarm:
     def add_drone(self, name, ip):
         self.ips.append(ip)
         drone = Drone(name, self.id, ip)
-        self.data[name] = drone
+        self.data[name]['state'] = drone
         self.id += 1
 
     def connect(self):
@@ -82,9 +82,3 @@ class State:
 
     def update_velocities(self, x, y, z, yaw):
         self.v = [x,y,z,yaw]
-
-swarm = Swarm()
-
-swarm.add_drone("Drone 1", "192.168.1.1")
-
-swarm.connect()

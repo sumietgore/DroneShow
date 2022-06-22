@@ -5,7 +5,7 @@ class MotionPlanner():
     """
     Creates a quintic polynomial motion planner for the drone
     """
-    def __init__(self, start_pos = [0,0,0], des_pos = [0,0,0], T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
+    def __init__(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):
         self.set(start_pos, des_pos, T=T, dt = dt, start_vel=start_vel, des_vel=des_vel, start_acc=start_acc, des_acc=des_acc)
         
     def set(self, start_pos, des_pos, T=0.0, dt = 0.1, start_vel=[0,0,0], des_vel=[0,0,0], start_acc=[0,0,0], des_acc=[0,0,0]):

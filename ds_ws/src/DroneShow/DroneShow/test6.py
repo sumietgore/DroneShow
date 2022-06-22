@@ -64,7 +64,7 @@ class Test(Node):
         self.prev_timestamp = None
         self.dt = 10
 
-        self.pose_subscriber = self.create_subscription(PoseStamped,'/vrpn_client_node/drone1_cap/pose',self.pose_callback,1)
+        self.pose_subscriber = self.create_subscription(PoseStamped,'/vrpn_client_node/drone2_cap/pose',self.pose_callback,1)
         self.stop_subscriber = self.create_subscription(String, "/stop",self.stop_callback, 1)
 
         self.control_thread = None
@@ -77,7 +77,7 @@ class Test(Node):
             #print(f'x : {self.cur_x} y : {self.cur_y} z : {self.cur_z}')
 
                 #Code for safety net            
-                if self.cur_x > 275 or self.cur_y > 275 or self.cur_z > 210:
+                if self.cur_x > 300 or self.cur_y > 300 or self.cur_z > 200:
                     print(f'Safety net activated {self.cur_x} {self.cur_y} {self.cur_z}')
                     self.stopped_x = True
                     self.stopped_y = True
@@ -90,14 +90,14 @@ class Test(Node):
                 if self.prev_timestamp == None:
                     self.prev_timestamp = time.perf_counter()
 
-                if abs(self.waypoints_x[self.waypoints_x_i - 1] - self.cur_x) > 5:
+                if abs(self.waypoints_x[self.waypoints_x_i - 1] - self.cur_x) > 10:
                     self.stopped_x = False
                     if self.waypoints_x[self.waypoints_x_i - 1] > self.cur_x:
                         v_x = 20
                     else:
                         v_x = -20
                     #time.sleep(0.05)
-                elif abs(self.waypoints_x[self.waypoints_x_i - 1] - self.cur_x) < 5:
+                elif abs(self.waypoints_x[self.waypoints_x_i - 1] - self.cur_x) < 10:
                     #self.tello.stop()
                     v_x = 0
                     #print(f'Greater than x {self.waypoints_x[self.waypoints_x_i - 1]}')
@@ -109,14 +109,14 @@ class Test(Node):
                         #self.tello.land()
                         #self.tello.end()
 
-                if abs(self.waypoints_y[self.waypoints_y_i - 1] - self.cur_y) > 5:
+                if abs(self.waypoints_y[self.waypoints_y_i - 1] - self.cur_y) > 10:
                     self.stopped_y = False
                     if self.waypoints_y[self.waypoints_y_i - 1] > self.cur_y:
                         v_y = 20
                     else:
                         v_y = -20
                     #time.sleep(0.05)
-                elif abs(self.waypoints_y[self.waypoints_y_i - 1] - self.cur_y) < 5:
+                elif abs(self.waypoints_y[self.waypoints_y_i - 1] - self.cur_y) < 10:
                     #self.tello.stop()
                     v_y = 0
                     #print(f'Greater than y {self.waypoints_y[self.waypoints_y_i - 1]}')
@@ -160,6 +160,7 @@ class Test(Node):
         print("init seq")
         self.tello = Tello()
         self.tello.connect()
+        print(self.tello.get_battery())
         self.tello.takeoff()
         self.control_thread = self.controller()
         self.is_flying = True

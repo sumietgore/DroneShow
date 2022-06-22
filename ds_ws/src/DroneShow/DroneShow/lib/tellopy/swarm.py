@@ -27,8 +27,6 @@ class TelloSwarm:
 
     tellos = []
 
-    ID = -1
-
     @staticmethod
     def fromFile(path: str):
         """Create TelloSwarm from file. The file should contain one IP address per line.
@@ -55,20 +53,6 @@ class TelloSwarm:
         for ip in ips:
             tellos.append(Tello(ip.strip()))
 
-        return TelloSwarm(tellos)
-
-    @staticmethod
-    def add_drone(ip):
-        tello = Tello(ip)
-        TELLOS.append(tello)
-        ID += 1
-        return ID
-
-    def get_drones():
-        return TELLOS
-
-    @staticmethod
-    def start_swarm(tellos:List[Tello]):
         return TelloSwarm(tellos)
 
     def __init__(self, tellos: List[Tello]):
