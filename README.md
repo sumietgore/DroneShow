@@ -10,4 +10,4 @@ This repository contains code for the project Indoor Drone Light Show, which is 
 
 ### Requirements
 
-ROS2 Foxy, Python 3.8, DJI Robomaster TT
+ROS2 Foxy, Python 3.8, DJI Tello
