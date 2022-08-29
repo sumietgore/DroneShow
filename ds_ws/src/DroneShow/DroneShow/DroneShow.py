@@ -1,5 +1,14 @@
-from tkinter.font import nametofont
+"""
+    Main controller for the ROS package. Either build the package using colcon or directly run this python file.
 
+    The main components of this package are:
+        Waypoint Generator (Reads the animation file and creates waypoints for the drone to follow)
+        Path Planner (Quinitic polynomial based path planner. A path is planned every time between two waypoints.)
+        Path Tracking (A custom location based controller to follow waypoints)
+        Tello Controller (DJI Tello Py Controller. https://github.com/damiafuentes/DJITelloPy)      
+"""
+
+from tkinter.font import nametofont
 from click import password_option
 from lib.WaypointGenerator import WaypointGenerator
 import rclpy
