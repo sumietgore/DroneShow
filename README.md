@@ -5,9 +5,8 @@ This repository contains code for the project Indoor Drone Light Show, which is 
 
 ### Repository Structure
 
-ds_ws: Workspace folder
-
-docs : Documentation
+1. ds_ws: Workspace folder
+2. docs : Documentation
 
 ### Requirements
 
