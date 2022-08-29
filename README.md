@@ -5,7 +5,7 @@ This repository contains code for the project Indoor Drone Light Show, which is 
 
 ### Repository Structure
 
-1. ds_ws: Workspace folder
+1. ds_ws: ROS2 workspace folder
 2. docs : Documentation
 
 ### Requirements
